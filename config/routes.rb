@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+
   devise_for :users, :controllers => {registrations: 'registrations'}
 
     resources :tweets do
+      resources :comments
     member do
             put 'like', to: "tweets#like"
             put 'unlike', to: "tweets#unlike"

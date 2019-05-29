@@ -29,35 +29,46 @@
 			<% if user_signed_in? %>
 			<nav class="level">
 				<div class="level-left is-mobile">
+
 					<%= link_to tweet, class: "level-item" do %>
 						<span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
 					<% end %>
+
 					<%= link_to edit_tweet_path(tweet), class: "level-item" do %>
 						<span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
 					<% end %>
+
 					<%= link_to tweet, method: :delete, data: {confirm: "Are you sure you want to delete this tweet?"} do %>
 						<span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
 					<% end %>
+
+					<%= link_to new_tweet_comment_path(tweet), class: "level-item" do %>
+						<span class="icon"><i class="fa fa-comment" aria-hidden="true"></i></span>
+						<span class="vote_count"><%= @tweet.comments.count%></span>
+					<% end %>
+
 					<% if current_user.liked? tweet %>
                   <%= link_to unlike_tweet_path(tweet), method: :put, class: "unlike_tweet" do %>
                     <span class="icon"><i class="fa fa-heart has-text-primary"></i></span>
                     <span class="vote_count"><%= tweet.get_likes.size %></span>
                   <% end %>
-                <% else %>
+          <% else %>
                   <%= link_to like_tweet_path(tweet), method: :put, class: "like_tweet" do %>
                     <span class="icon"><i class="fa fa-heart"></i></span>
                     <span class="vote_count"><%= tweet.get_likes.size %></span>
                   <% end %>
-                <% end %>
-              <% else %>
-                  <%= link_to like_tweet_path(tweet), method: :put, class: "like_tweet" do %>
-                    <span class="icon"><i class="fa fa-heart"></i></span>
-                    <span class="vote_count"><%= tweet.get_likes.size %></span>
-                  <% end %>
-				</div>
+          <% end %>
+      <% else %>
+              <%= link_to like_tweet_path(tweet), method: :put, class: "like_tweet" do %>
+              <span class="icon"><i class="fa fa-heart"></i></span>
+              <span class="vote_count"><%= tweet.get_likes.size %></span>
+      <% end %>
+		</div>
 			</nav>
-			<% end %>
+		<% end %>
 		</article>
 	</div>
 <% end %>
 </div>
+
+<%= render @tweet.comments %>
