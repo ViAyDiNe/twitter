@@ -38,6 +38,22 @@
 					<%= link_to tweet, method: :delete, data: {confirm: "Are you sure you want to delete this tweet?"} do %>
 						<span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
 					<% end %>
+					<% if current_user.liked? tweet %>
+                  <%= link_to unlike_tweet_path(tweet), method: :put, class: "unlike_tweet" do %>
+                    <span class="icon"><i class="fa fa-heart has-text-primary"></i></span>
+                    <span class="vote_count"><%= tweet.get_likes.size %></span>
+                  <% end %>
+                <% else %>
+                  <%= link_to like_tweet_path(tweet), method: :put, class: "like_tweet" do %>
+                    <span class="icon"><i class="fa fa-heart"></i></span>
+                    <span class="vote_count"><%= tweet.get_likes.size %></span>
+                  <% end %>
+                <% end %>
+              <% else %>
+                  <%= link_to like_tweet_path(tweet), method: :put, class: "like_tweet" do %>
+                    <span class="icon"><i class="fa fa-heart"></i></span>
+                    <span class="vote_count"><%= tweet.get_likes.size %></span>
+                  <% end %>
 				</div>
 			</nav>
 			<% end %>

@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_tweet, only: [:show, :edit, :update, :destroy, :like, :unlike]
+  before_action :authenticate_user!, except: [:index, :show, :like, :unlike]
 
   # GET /tweets
   # GET /tweets.json
@@ -62,6 +62,23 @@ class TweetsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def like
+    @tweet.liked_by current_user
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
+      format.json { render layout:false }
+    end
+  end
+
+  def unlike
+    @tweet.unliked_by current_user
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
+      format.json { render layout:false }
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -44,7 +44,9 @@ gem 'gravatar_image_tag', '~> 1.2'
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.6', '>= 4.6.2'
 # Likeable allows you to make your models...well...likeable using redis.
-gem 'likeable', '~> 0.1.2'
+# gem 'likeable', '~> 0.1.2'
+# Rails gem to allowing records to be votable
+gem 'acts_as_votable', '~> 0.12.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
