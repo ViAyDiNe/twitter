@@ -42,7 +42,7 @@ gem 'simple_form', '~> 4.1'
 # A configurable and documented Rails view helper for adding gravatars into your Rails application.
 gem 'gravatar_image_tag', '~> 1.2'
 # Flexible authentication solution for Rails with Warden
-gem 'devise', '~> 4.6', '>= 4.6.2'
+gem 'devise', '~> 4.7'
 # Likeable allows you to make your models...well...likeable using redis.
 # gem 'likeable', '~> 0.1.2'
 # Rails gem to allowing records to be votable
